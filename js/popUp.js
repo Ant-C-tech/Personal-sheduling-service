@@ -97,7 +97,7 @@ function PopUp(obj) {
 
     this.createPopupElements = function () {
         return `<div class="${popupMaskName}"></div>
-                        <div class="container ${popupWindowName} w-25 shadow-lg text-center rounded pt-2 pr-2 pb-4 pl-2">
+                        <div class="container ${popupWindowName} shadow-lg text-center rounded pt-2 pr-2 pb-4 pl-2">
                             <div class="row">
                                 <div class="col">
                                     <div class="${btnCloseName} d-flex justify-content-center align-items-center border border-dark rounded-circle ml-auto mb-1" type="button" style="width: 30px; height: 30px; transition: transform ease-in-out 0.3s"><p style="font-size:18px; font-family:'Montserrat', sans-serif; margin:0;">&#10006</p></div>

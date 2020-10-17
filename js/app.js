@@ -14,7 +14,7 @@ function todoMain() {
         eventList = [],
         calendar,
         shortListBtn,
-        changeBtn, 
+        changeBtn,
         closePopupBtn
 
 
@@ -45,12 +45,12 @@ function todoMain() {
             <input type="time" id="timeInput">
             <span></span>
 
-            <button id="addBtn" class="addBtn updatePopup-popupAddEvent">Додати подію</button>
+            <div id="addBtn" class="addBtn updatePopup-popupAddEvent btn btn-primary">Додати подію</div>
             <span></span>
-            <button id="sortByDateBtn">Сортувати за датою</button>
+            <div id="sortByDateBtn" class="btn btn-primary">Сортувати за датою</div>
 
             <span></span>
-            <label><input class="mr-3" id="shortListBtn" type="checkbox">Актуальні події напочатку</label>
+            <label class="shortListBtn"><input class="mr-3" id="shortListBtn" type="checkbox">Актуальні події напочатку</label>
 
         </div>
     </div>`,
@@ -58,9 +58,9 @@ function todoMain() {
         maskOpacity: '0.01',
     })
 
-//     document.addEventListener('click', function(event){
-// console.log(event.target)
-//     })
+    //     document.addEventListener('click', function(event){
+    // console.log(event.target)
+    //     })
 
 
 
@@ -88,7 +88,7 @@ function todoMain() {
             <input type="time" id="editTime">
             <span></span>
 
-            <button id="changeBtn" class="updatePopup">Зберігти зміни</button>
+            <div id="changeBtn" class="btn btn-primary updatePopup">Зберігти зміни</div>
         </div>
        
     </div>`,
@@ -96,35 +96,35 @@ function todoMain() {
         maskOpacity: '0.01',
     })
 
-    
-// let startPopupAddEvCol = document.querySelectorAll('.showPopup')
+
+    // let startPopupAddEvCol = document.querySelectorAll('.showPopup')
 
 
-    window.addEventListener('load', () => { 
+    window.addEventListener('load', () => {
 
         let startPopupAddEvCol = document.querySelectorAll('.material-icons')
         console.log("todoMain -> startPopupAddEvCol", startPopupAddEvCol)
 
         // function getElements() {
-            inputElemEvent = document.querySelector('#inpEvent')
-            inputElemCategory = document.querySelector('#inpCategory')
-            dateInput = document.querySelector('#dateInput')
-            timeInput = document.querySelector('#timeInput')
-            addBtn = document.querySelector('#addBtn')
-            sortByDateBtn = document.querySelector('#sortByDateBtn')
-            managePanel = document.querySelector('#eventManagePanel')
-            selectElem = document.querySelector('#categoryFilter')
-            shortListBtn = document.querySelector('#shortListBtn')
+        inputElemEvent = document.querySelector('#inpEvent')
+        inputElemCategory = document.querySelector('#inpCategory')
+        dateInput = document.querySelector('#dateInput')
+        timeInput = document.querySelector('#timeInput')
+        addBtn = document.querySelector('#addBtn')
+        sortByDateBtn = document.querySelector('#sortByDateBtn')
+        managePanel = document.querySelector('#eventManagePanel')
+        selectElem = document.querySelector('#categoryFilter')
+        shortListBtn = document.querySelector('#shortListBtn')
         // }
-    
+
         // function addListeners() {
-            
-            addBtn.addEventListener('click', addEvent)
-            sortByDateBtn.addEventListener('click', sortEventListByDate)
-            shortListBtn.addEventListener('change', multipleFilter)
-            selectElem.addEventListener('change', multipleFilter)
-          
-            // managePanel.addEventListener('click', managePanelReduct)
+
+        addBtn.addEventListener('click', addEvent)
+        sortByDateBtn.addEventListener('click', sortEventListByDate)
+        shortListBtn.addEventListener('change', multipleFilter)
+        selectElem.addEventListener('change', multipleFilter)
+
+        // managePanel.addEventListener('click', managePanelReduct)
         // }
 
 
@@ -367,7 +367,7 @@ function todoMain() {
         edit.className = 'material-icons'
         edit.classList.add('showPopup')
         // edit.addEventListener('click', editEvent)
-        edit.addEventListener('click', function(event){
+        edit.addEventListener('click', function (event) {
             editEvent(event)
             document.querySelector('.start2').click()
             console.log("todoMain -> document.querySelector('.start2')", document.querySelector('.start2'))
@@ -494,15 +494,10 @@ function todoMain() {
             editable: true,
             dayMaxEvents: true, // allow "more" link when too many events
             events: [],
-            dateClick: function(info) {
-                document.querySelector('.start').click()},
+            dateClick: function (info) {
+                document.querySelector('.start').click()
+            },
 
-
-            //код - Віталій Скиртач
-            //editable: true,
-            //eventDrop: function (info){
-            //    calendarEventDragged(info.event);
-            //}
         });
 
         calendar.render();
@@ -566,66 +561,6 @@ function todoMain() {
 
     }
 
-    // function managePanelReduct(event) {
-    //     if (event.target.matches('span') && event.target.dataset.editable == 'true') {
-    //         let tempInputElem
-    //         switch (event.target.dataset.type) {
-    //             case 'date':
-    //                 tempInputElem = document.createElement('input')
-    //                 tempInputElem.type = 'date'
-    //                 tempInputElem.value = event.target.dataset.value
-    //                 break
-    //             case 'time':
-    //                 tempInputElem = document.createElement('input')
-    //                 tempInputElem.type = 'time'
-    //                 tempInputElem.value = event.target.innerText
-    //                 break
-    //             case 'name':
-    //                 tempInputElem = document.createElement('input')
-    //                 tempInputElem.type = 'text'
-    //                 tempInputElem.value = event.target.innerText
-    //                 break
-    //             case 'category':
-    //                 tempInputElem = document.createElement('input')
-    //                 tempInputElem.type = 'text'
-    //                 tempInputElem.value = event.target.innerText
-    //                 break
-    //         }
-    //         tempInputElem.addEventListener('change', addNewEventData)
-    //         event.target.innerText = ''
-    //         event.target.appendChild(tempInputElem)
-    //     }
-
-        // function addNewEventData(event) {
-        //     const newEventData = event.target.value
-        //     const eventId = event.target.parentNode.dataset.id
-
-        //     calendar.getEventById(eventId).remove()
-
-        //     eventList.forEach(itemObj => {
-        //         if (itemObj.id === eventId) {
-        //             // itemObj.name = newEventName
-        //             itemObj[event.target.parentNode.dataset.type] = newEventData
-        //             addEventToCalendar({
-        //                 id: itemObj.id,
-        //                 title: itemObj.name,
-        //                 start: itemObj.date,
-        //             })
-        //             updateGoogleEvent(itemObj);
-        //             // console.log(itemObj);
-        //         }
-        //     })
-
-    //         saveEvent()
-    //         clearEvents()
-    //         renderAllEvents(eventList)
-    //         updateFilterOptions()
-    //     }
-    // }
-
-   
-
-   
 
     function commitEdit(event) {
 
@@ -663,46 +598,100 @@ function todoMain() {
         renderAllEvents(eventList)
         updateFilterOptions()
 
-        
+
 
         console.log(eventList)
     }
 
 
+    //========================================  Animation keyframes  =====================================================
 
+    const btnShow = document.querySelector('.show-alert-anim')
+    const btnShowAnimIcon = document.querySelector('.arrowBtn')
 
+    let showTableFlag = false
+    // const btnHideAnim = document.querySelector('.hide-alert-anim')
+    const divAlert = document.querySelector('.animTarget-anim')
 
-
-    //код - Скиртач Віталій урок 20
-    /*
-    function calendarEventDragged(event){
-        let id = event.id;
-        let dateObj = new Date(event.start);
-        let year = dateObj.getFullYear();
-        let month = dateObj.getMonth();
-        let date = dateObj.getDate();
-
-        let paddedMonth = month.toString();
-        if (paddedMonth.length < 2){
-            paddedMonth = "0" + paddedMonth;
+    btnShow.addEventListener('click', function () {
+        show()
+        if (!showTableFlag) {
+            btnShowAnimIcon.classList.add('arrowBtn-rev')
+        } else {
+            btnShowAnimIcon.classList.remove('arrowBtn-rev')
         }
 
-        let paddedDate = date.toString();
-        if (paddedDate.length < 2){
-            paddedDate = "0" + paddedDate;
-        }
-    
-        let toStoreDate = `${year}-${paddedMonth}-${paddedDate}`;
-        console.log(toStoreDate);
+        showTableFlag = !showTableFlag
+    })
 
-        todoList.forEach(todoObj => {
-            if(todoObj.id == id){
-                todoObj.date = toStoreDate;
+
+
+    function show() {
+
+        divAlert.style.display = 'block'
+
+        // Т.к. по умолчанию опасити и так 1 тразишену некуда выполняться
+        // Принудительно задаём исходное опасити 0
+        divAlert.classList.add('fa-enter')
+
+        // И только после этого (асинхронно) выполняем анимацию, которая уже теперь может работать.
+        raf( //Асинхронная работа
+            function () {
+                divAlert.classList.add('fa-enter-active')
+                divAlert.classList.add('fa-enter-to')
+                divAlert.classList.remove('fa-enter')
             }
-        });
-        
-        save();
-        multipleFilter();
+        )
 
-    }*/
+        divAlert.addEventListener('transitionend', handler) // подчищаем класы, удаляем листенер
+
+        //--Toggle--
+        btnShow.removeEventListener('click', show) // Запрещаем повторное нажатие 'Show'
+        btnShow.addEventListener('click', hide) //Разрешаем работу с кнопкой "Скрыть"
+
+        function handler() {
+            divAlert.classList.remove('fa-enter-active')
+            divAlert.classList.remove('fa-enter-to')
+            divAlert.removeEventListener('transitionend', handler)
+        }
+    }
+
+
+
+    function hide() {
+
+        // Работает и без асинхронности здесь т.к. значение опасити по умолчанию 1 и есть куда совершать транзишн
+        // Но резервируем класс если прийдётся работать с другими свойствами, значение по умолчанию которых нам не подойдёт
+        divAlert.classList.add('fa-leave')
+        divAlert.classList.add('fa-leave-active')
+        raf(
+            function () {
+
+                divAlert.classList.add('fa-leave-to')
+                divAlert.classList.remove('fa-leave')
+            }
+        )
+
+        divAlert.addEventListener('transitionend', handler) // дисплей: нон, подчищаем класы, удаляем листенер
+
+        //--Toggle--
+        btnShow.removeEventListener('click', hide) // Запрещаем повторное нажатие 'Hide'
+        btnShow.addEventListener('click', show) //Разрешаем работу с кнопкой "Show"
+
+        function handler() {
+            divAlert.style.display = 'none'
+
+            divAlert.classList.remove('fa-leave-active')
+            divAlert.classList.remove('fa-leave-to')
+            divAlert.removeEventListener('transitionend', handler)
+        }
+    }
+
+    function raf(fn) { //Откладывает запуск дальнейшего рендеринга до срабатывания предъидущего
+        window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(function () {
+                fn()
+            })
+        })
+    }
 }
