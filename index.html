@@ -33,7 +33,6 @@
     <link rel="stylesheet" href="./fullcalendar-5.3.2/lib/main.min.css">
 
     <!-- Bootstrap 4 -->
-    <!-- <link rel="stylesheet" href="css/bootstrap-litera.min.css"> -->
     <link rel="stylesheet" href="css/bootstrap-materia.min.css">
 
     <!-- Own Styles -->
@@ -45,13 +44,13 @@
 
     <div class="container py-3">
 
-        <div>
-            <button id="authorize_button" style="display: none;">Додати Google Календар</button>
-            <button id="signout_button" style="display: none;">Видалити Google Календар</button>
+        <div class="btnWrapper py-0 text-center">
+            <button id="authorize_button" class="btn btn-primary mx-3 my-2" style="display:none">Додати Google Календар</button>
+            <button id="signout_button" class="btn btn-primary mx-3 my-2" style="display:none">Видалити Google Календар</button>
             <span id="gmail" style="display: none;"></span>
         </div>
 
-        <div class="row my-3">
+        <div class="m-0 row my-3">
             <div class="calendar-wrapper">
                 <div class="todo-calendar showPopup-addEvent p-3 rounded w-100">
                     <div id='calendar'></div>
@@ -86,11 +85,6 @@
         <div class="start2"></div>
 
     </div>
-
-<!-- 
-    <button id="authorize_button" style="display: none;">Додати google календар</button>
-    <button id="signout_button" style="display: none;">Видалити google календар</button>
-    <span id="gmail" style="display: none;"></span> -->
 
 
     <script defer src="fullcalendar-5.3.2/lib/main.min.js"></script>

@@ -103,7 +103,7 @@ function todoMain() {
     window.addEventListener('load', () => {
 
         let startPopupAddEvCol = document.querySelectorAll('.material-icons')
-        console.log("todoMain -> startPopupAddEvCol", startPopupAddEvCol)
+        // console.log("todoMain -> startPopupAddEvCol", startPopupAddEvCol)
 
         // function getElements() {
         inputElemEvent = document.querySelector('#inpEvent')
@@ -130,7 +130,7 @@ function todoMain() {
 
         changeBtn = document.querySelector('#changeBtn')
         closePopupBtn = document.querySelector('.start2-popupClose')
-        console.log("todoMain -> closePopupBtn", closePopupBtn)
+        // console.log("todoMain -> closePopupBtn", closePopupBtn)
         // closePopupBtn.classList.add('updatePopup')
         changeBtn.addEventListener('click', commitEdit)
 

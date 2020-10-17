@@ -8,12 +8,17 @@ body {
     max-width: 1200px !important;
 }
 
+
+
+.btnWrapper{
+    background: #fff;
+}
+
 .calendar-wrapper, #eventManagePanel {
     background: #fff;
 }
 
 #eventManagePanel {
-    /* display: block; */
     overflow: auto;
 }
 
@@ -207,7 +212,6 @@ button:hover {
 }
 
 .calendar-wrapper {
-    margin: 0 15px;
     width: 100%;
 }
 

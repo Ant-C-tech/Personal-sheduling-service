@@ -51,7 +51,7 @@ function PopUp(obj) {
 
         // Show popup buttons:
         for (let item of document.querySelectorAll(`.${this.openBtn}`)) {
-            console.log("PopUp -> `.${this.openBtn}`", `.${this.openBtn}`)
+            // console.log("PopUp -> `.${this.openBtn}`", `.${this.openBtn}`)
             item.addEventListener('click', () => {
                 this.showPopup()
             })
