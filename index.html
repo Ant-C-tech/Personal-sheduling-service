@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal sheduling service</title>
+
+    <!--Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./images/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Description-->
+    <meta name="description" content="personal scheduling service">
+    <meta name="keywords" content="personal scheduling service">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Material Icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
+
+    <!-- FullCalendar local -->
+    <link rel="stylesheet" href="./fullcalendar-5.3.2/lib/main.min.css">
+
+    <!-- Bootstrap 4 -->
+    <!-- <link rel="stylesheet" href="css/bootstrap-litera.min.css"> -->
+    <link rel="stylesheet" href="css/bootstrap-materia.min.css">
+
+    <!-- Own Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sb-admin-2.min.css">
+</head>
+
+<body>
+
+    <div class="container py-3">
+
+        
+
+        <div class="row my-3">
+            <div class="calendar-wrapper d-flex">
+                <div class="todo-calendar showPopup-addEvent p-3 rounded w-100">
+                    <div id='calendar'></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="flexContainer mb-3"> -->
+        <!-- <div class="panel d-flex">
+            <div class="todo-input todo-block align-self-stretch w-100">
+                <span>Подія</span>
+                <input id="inpEvent" type="text" placeholder="Заплануйте нову подію">
+                <span>Категорія події:</span>
+                <input id="inpCategory" type="text" placeholder="Зазначте категорію події" list="categoryList">
+
+                <datalist id="categoryList">
+                    <option value="Особиста подія"></option>
+                    <option value="Робоча подія"></option>
+                    <option value="ВАЖЛИВО!"></option>
+                </datalist>
+                <span>Дата:</span>
+                <input type="date" id="dateInput">
+
+                <span> Час:</span>
+                <input type="time" id="timeInput">
+                <span></span>
+
+                <button id="addBtn" class="addBtn updatePopup">Додати подію</button>
+                <span></span>
+                <button id="sortByDateBtn">Сортувати за датою</button>
+
+                <span></span>
+                <label><input class="mr-3" id="shortListBtn" type="checkbox">Актуальні події напочатку</label>
+
+            </div>
+        </div> -->
+
+        <!-- <button id="authorize_button" style="display: none;">Authorize</button>
+                           <button id="signout_button" style="display: none;">Sign Out</button> -->
+        <!-- <div>
+                        <button id="authorize_button" style="display: none;">Додати Google Календар</button>
+                        <button id="signout_button" style="display: none;">Видалити Google Календар</button>
+                        <span id="gmail" style="display: none;"></span>
+                    </div> -->
+
+        <!-- <ul id="out"></ul> -->
+
+        <table id="eventManagePanel" class="table-list">
+            <tr>
+                <th class="text-center text-secondary" id="done">Виконано</th>
+                <th class="text-center text-secondary" id="date">Дата події </th>
+                <th class="text-center text-secondary" id="time">Час події</th>
+                <th class="text-center text-secondary" id="nazva">Назва події</th>
+                <th class="text-center text-secondary" id="allCategory">
+                    <select class="text-secondary py-1 px-3" id="categoryFilter">
+                        <option class="text-secondary" value="Всі категорії">Всі категорії</option>
+                    </select>
+                </th>
+                <th class="text-center text-secondary" id="edit">Редагувати подію</th>
+                <th class="text-center text-secondary" id="delete">Видалити подію</th>
+            </tr>
+        </table>
+
+        <!-- </div> -->
+
+
+        <!-- </div> -->
+
+        <!-- <div class="todo-grid-parent"> -->
+
+        <!-- </div> -->
+
+
+        <div class="addEvent"></div>
+        <div class="start"></div>
+        <div class="popup"></div>
+        <div class="start2"></div>
+
+
+    </div>
+
+
+
+
+
+    <!-- 
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button> -->
+    <!-- </div>
+        
+        <div class="todo-calendar todo-block">
+            <div id='calendar'></div>
+        </div> -->
+
+
+
+    <button id="authorize_button" style="display: none;">Додати google календар</button>
+    <button id="signout_button" style="display: none;">Видалити google календар</button>
+    <span id="gmail" style="display: none;"></span>
+
+
+
+    <!-- <button id="authorize_button" style="display: none;">Додати google календар</button>
+    <button id="signout_button" style="display: none;">Видалити google календар</button>
+    <span id="gmail" style="display: none;"></span> -->
+
+    <script defer src="fullcalendar-5.3.2/lib/main.min.js"></script>
+    <script defer src="fullcalendar-5.3.2/lib/locales/uk.js"></script>
+    <script defer src="js/popUp.js"></script>
+    <script defer src="js/app.js"></script>
+
+    <script src="./js/googlecalendar.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+    <script defer src="./js/googlecalendar.js"></script>
+
+</body>
+
+</html>
