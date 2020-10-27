@@ -19,7 +19,7 @@ function todoMain() {
 
 
     let popupAddEvent = new PopUp({
-        openBtn: 'start',
+        openBtn: 'showPopUpAddEvent',
         container: 'addEvent',
         content: `<div class="panel d-flex">
         <div class="todo-input todo-block align-self-stretch w-100">
@@ -41,15 +41,11 @@ function todoMain() {
             <span></span>
 
             <div id="addBtn" class="addBtn updatePopup-popupAddEvent btn btn-primary">Додати подію</div>
-            <span></span>
-
-            <span></span>
-            <label class="shortListBtn"><input class="mr-3" id="shortListBtn" type="checkbox">Актуальні події напочатку</label>
 
         </div>
     </div>`,
-        maskColor: `#fff`,
-        maskOpacity: '0.01',
+        maskColor: `#d6e6f9`,
+        maskOpacity: '0.6',
     })
 
 
@@ -62,7 +58,7 @@ function todoMain() {
             <span>Подія</span>
             <input id="editName" type="text" >
             <span>Категорія події:</span>
-            <input id="editCategory" type="text" list="categoryList">
+            <input id="editCategory" type="text" list="popupCategoryList">
 
             <datalist id="popupCategoryList">
                 <option value="Особиста подія"></option>
@@ -80,8 +76,8 @@ function todoMain() {
         </div>
        
     </div>`,
-        maskColor: `#fff`,
-        maskOpacity: '0.01',
+        maskColor: `#d6e6f9`,
+        maskOpacity: '0.6',
     })
 
 
@@ -260,6 +256,11 @@ function todoMain() {
         let checkboxElem = document.createElement('input')
         checkboxElem.type = 'checkbox'
         checkboxElem.addEventListener('click', doneEvent)
+        checkboxElem.addEventListener('click', () => {
+            if (shortListBtn.checked) {
+                multipleFilter()
+            }
+        })
         checkboxElem.dataset.id = id
         if (isDone) {
             eventRow.classList.add('strike')
@@ -399,23 +400,7 @@ function todoMain() {
             saveEvent()
         }
 
-        function editEvent(event) {
-            console.log('work')
-            const currentElemId = event.target.dataset.id
-            const currentElem = eventList.find(itemObj => itemObj.id == currentElemId)
-            let {
-                name,
-                category,
-                date,
-                time
-            } = currentElem
-            document.querySelector('#editName').value = name
-            document.querySelector('#editCategory').value = category
-            document.querySelector('#editDate').value = date
-            document.querySelector('#editTime').value = time
 
-            changeBtn.dataset.id = id
-        }
 
     }
 
@@ -456,16 +441,24 @@ function todoMain() {
             },
             locale: 'uk',
             contentHeight: 'auto',
-            themeSystem: 'bootstrap',
+            themeSystem: 'standard',
             buttonIcons: false, // show the prev/next text
             weekNumbers: true,
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             dayMaxEvents: true, // allow "more" link when too many events
             events: [],
-            dateClick: function (info) {
-                document.querySelector('.start').click()
+            eventClick: function (info) {
+
+                editEvent(info.event)
+                document.querySelector('.start2').click()
             },
+            eventBackgroundColor: '#B2EBF2',
+            eventBorderColor: ' #607D8B',
+            eventTextColor: ' #607D8B',
+            // dateClick: function (info) {
+            //     document.querySelector('.start').click()
+            // },
 
         });
 
@@ -530,6 +523,31 @@ function todoMain() {
 
     }
 
+    function editEvent(event) {
+        let currentElemId
+        if (event.target) { //our own event
+            currentElemId = event.target.dataset.id
+        } else { // calendar event
+            currentElemId = event.id
+        }
+
+        changeBtn.dataset.id = currentElemId
+        preFillEditForm(currentElemId)
+    }
+
+    function preFillEditForm(currentElemId) {
+        const currentElem = eventList.find(itemObj => itemObj.id == currentElemId)
+        let {
+            name,
+            category,
+            date,
+            time
+        } = currentElem
+        document.querySelector('#editName').value = name
+        document.querySelector('#editCategory').value = category
+        document.querySelector('#editDate').value = date
+        document.querySelector('#editTime').value = time
+    }
 
     function commitEdit(event) {
 
@@ -566,6 +584,9 @@ function todoMain() {
         clearEvents()
         renderAllEvents(eventList)
         updateFilterOptions()
+
+        // Sort events by date
+        sortEventListByDate()
 
     }
 

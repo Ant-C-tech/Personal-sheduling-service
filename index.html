@@ -57,9 +57,14 @@
                 <div class="todo-calendar showPopup-addEvent p-3 rounded w-100">
                     <div id='calendar'></div>
                 </div>
-                <div class="calendar__btnBox show-alert-anim">
-                    <i class="material-icons arrowBtn">expand_less</i>
+                <div class="px-3">
+                    <div class="showPopUpAddEvent btn btn-secondary btn-block mb-4" type="button">Додати подію
+                    </div>
+                    <div class="calendar__btnBox show-alert-anim">
+                        <i class="material-icons arrowBtn px-5">expand_less</i>
+                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -67,13 +72,13 @@
             <tr>
                 <th class="text-center text-secondary" id="done">
                     Виконано
-                    <label class="shortListBtn d-flex"><input class="mr-3" id="shortListBtn" type="checkbox">Актуальні
-                        події
-                        напочатку</label>
+                    <label class="shortListBtn d-flex">
+                        <input class="dot mr-3" id="shortListBtn" type="checkbox">
+                        <span class="pt-1">Cпочатку актуальні</span>
+                    </label>
                 </th>
                 <th class="text-center text-secondary" id="date">
                     Дата події
-                    <!-- <div id="sortByDateBtn" class="btn btn-secondary text-dark">Сортувати за датою</div> -->
                 </th>
                 <th class="text-center text-secondary" id="time">Час події</th>
                 <th class="text-center text-secondary" id="nazva">Назва події</th>
@@ -89,7 +94,7 @@
 
 
         <div class="addEvent"></div>
-        <div class="start"></div>
+        <!-- <div class="start"></div> -->
         <div class="popup"></div>
         <div class="start2"></div>
 

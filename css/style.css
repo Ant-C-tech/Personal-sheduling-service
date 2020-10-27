@@ -58,16 +58,86 @@ body {
 
 /* FullCalendar */
 
-.btn-primary {
-  background-color: #007bff !important;
-  border-color: #007bff !important;
+.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
+  background: #0097a7;
+  font-weight: bold;
 }
 
-.fc-event-title-container,
-.fc-event-main-frame,
-.fc-event-future {
-  background-color: #58cb7d !important;
-  border-color: #58cb7d !important;
+.fc-dayGridMonth-button.fc-button.fc-button-primary {
+  background: #607d8b;
+  font-weight: bold;
+}
+
+.fc-timeGridWeek-button.fc-button.fc-button-primary.fc-button-active {
+  background: #0097a7;
+  font-weight: bold;
+}
+
+.fc-timeGridWeek-button.fc-button.fc-button-primary {
+  background: #607d8b;
+  font-weight: bold;
+}
+
+.fc-timeGridDay-button.fc-button.fc-button-primary.fc-button-active {
+  background: #0097a7;
+  font-weight: bold;
+}
+
+.fc-timeGridDay-button.fc-button.fc-button-primary {
+  background: #607d8b;
+  font-weight: bold;
+}
+
+.fc-today-button.fc-button.fc-button-primary {
+  background: #607d8b;
+  font-weight: bold;
+}
+
+.fc-today-button.fc-button.fc-button-primary.fc-button-active {
+  background: #0097a7;
+  font-weight: bold;
+}
+
+.fc-timeGridDay-button.fc-button.fc-button-primary {
+  background: #607d8b;
+  font-weight: bold;
+}
+
+.fc-listMonth-button.fc-button.fc-button-primary.fc-button-active {
+  background: #0097a7;
+  font-weight: bold;
+}
+
+.fc-listMonth-button.fc-button.fc-button-primary {
+  background: #607d8b;
+  font-weight: bold;
+}
+
+.fc-prev-button.fc-button.fc-button-primary {
+  background: #607d8b;
+  font-weight: bold;
+}
+
+.fc-next-button.fc-button.fc-button-primary {
+  background: #607d8b;
+  font-weight: bold;
+}
+
+.fc-button-primary {
+  border-color: #607d8b !important;
+  font-weight: bold;
+}
+
+.fc-event-title {
+  font-weight: bold;
+}
+
+.showPopUpAddEvent,
+.addBtn,
+#changeBtn {
+  background: #607d8b !important;
+  color: #f8f7f8;
+  font-weight: bold !important;
 }
 
 .fc-day-other {
@@ -180,7 +250,7 @@ h3 {
 }
 
 #done {
-  min-width: 170px;
+  min-width: 190px;
 }
 
 #nazva {
@@ -188,11 +258,11 @@ h3 {
 }
 
 #edit {
-  min-width: 110px;
+  min-width: 100px;
 }
 
 #delete {
-  min-width: 110px;
+  min-width: 100px;
 }
 
 #allCategory {
@@ -264,7 +334,7 @@ button:hover {
   left: 10000px;
 }
 
-.animTarget {
+.animTarget-anim {
   display: none;
 }
 
@@ -283,6 +353,38 @@ button:hover {
   transition: opacity 1s, transform 1s;
 }
 
+.showPopUpAddEvent-popupWindow,
+.start2-popupWindow {
+  width: 50% !important;
+}
+
+input[type="checkbox"] {
+  background: linear-gradient(
+    135deg,
+    rgba(247, 251, 255, 0.7) 20%,
+    rgba(0, 0, 0, 0.125) 100%
+  );
+  border: 2px solid #6c757d;
+  border-radius: 16px;
+  box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.1),
+    -3px -3px 5px 1px rgba(247, 251, 255, 0.5);
+  cursor: pointer;
+  height: 16px;
+  margin: 0 8px;
+  width: 16px;
+}
+
+.fc-daygrid-event-harness {
+  background: linear-gradient(
+    135deg,
+    rgba(247, 251, 255, 0.7) 20%,
+    rgba(0, 0, 0, 0.125) 100%
+  );
+  box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.1),
+    -3px -3px 5px 1px rgba(247, 251, 255, 0.5);
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1200px) {
   .fc .fc-toolbar {
     flex-direction: column !important;
@@ -290,7 +392,7 @@ button:hover {
   .fc-toolbar-title {
     margin: 15px !important;
   }
-  .start-popupWindow,
+  .showPopUpAddEvent-popupWindow,
   .start2-popupWindow {
     width: 40% !important;
   }
@@ -318,7 +420,7 @@ button:hover {
   .fc .fc-daygrid-week-number {
     display: none !important;
   }
-  .start-popupWindow,
+  .showPopUpAddEvent-popupWindow,
   .start2-popupWindow {
     width: 60% !important;
   }
@@ -328,7 +430,7 @@ button:hover {
   .btn-primary {
     font-size: 8px !important;
   }
-  .start-popupWindow,
+  .showPopUpAddEvent-popupWindow,
   .start2-popupWindow {
     width: 100% !important;
     height: 100vh;

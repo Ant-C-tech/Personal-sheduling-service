@@ -65,7 +65,7 @@ function PopUp(obj) {
                 for (let item of document.querySelectorAll(`.${this.openBtn}`)) {
                     item.addEventListener('click', () => {
                         this.showPopup()
-                        console.log("PopUp -> this.showPopup()", this.showPopup())
+                        // console.log("PopUp -> this.showPopup()", this.showPopup())
                     })
                     // console.log(item)
                 }
@@ -75,13 +75,13 @@ function PopUp(obj) {
 
         // Hide popup buttons:
         document.querySelector(`.${btnCloseName}`).addEventListener('click', () => {
-                for (let item of document.querySelectorAll(`.${this.openBtn}`)) {
-                    item.addEventListener('click', () => {
-                        this.showPopup()
-                        console.log("this.showPopup()", this.showPopup())
-                    })
-                    // console.log(item)
-                }
+            for (let item of document.querySelectorAll(`.${this.openBtn}`)) {
+                item.addEventListener('click', () => {
+                    this.showPopup()
+                    // console.log("this.showPopup()", this.showPopup())
+                })
+                // console.log(item)
+            }
 
             this.hidePopup()
         })
@@ -144,7 +144,7 @@ function PopUp(obj) {
         windowHeight = document.documentElement.clientHeight
         const popupWindowHeight = popupWindow.offsetHeight;
 
-        (windowHeight > popupWindowHeight) ? popupWindowTop = ((windowHeight - popupWindowHeight) / 2):
+        (windowHeight > popupWindowHeight) ? popupWindowTop = ((windowHeight - popupWindowHeight) / 2) :
             popupWindowTop = 0
     }
 
