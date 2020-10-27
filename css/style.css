@@ -1,366 +1,336 @@
 body {
-    background: #d6e6f9 !important;
+  background: #d6e6f9 !important;
 }
 
 .container {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-    max-width: 1200px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  max-width: 1200px !important;
 }
 
-
-
-.btnWrapper{
-    background: #fff;
+.btnWrapper {
+  background: #fff;
 }
 
-.calendar-wrapper, #eventManagePanel {
-    background: #fff;
+.calendar-wrapper,
+#eventManagePanel {
+  background: #fff;
 }
 
 #eventManagePanel {
-    overflow: auto;
+  overflow: auto;
 }
 
-.todo-input>span {
-    font-size: 26px !important;
+.todo-input > span {
+  font-size: 26px !important;
 }
 
-#editName, #editCategory, #inpEvent, #inpCategory, .shortListBtn {
-    border: none !important;
-    border-radius: 0 !important;
-    font-size: 18px !important;
-    color: #6c757d !important;
+#editName,
+#editCategory,
+#inpEvent,
+#inpCategory,
+.shortListBtn {
+  border: none;
+  border-radius: 0;
+  font-size: 17px;
+  color: #6c757d;
 }
 
-#editDate, #editTime, #dateInput, #timeInput {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #dcdddf;
-    border-radius: 0 !important;
-    font-size: 18px !important;
-    color: #6c757d !important;
+.shortListBtn {
+  border: none;
+  border-radius: 0;
+  font-size: 10px;
+  color: #6c757d;
+}
+
+#editDate,
+#editTime,
+#dateInput,
+#timeInput {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #dcdddf;
+  border-radius: 0 !important;
+  font-size: 18px !important;
+  color: #6c757d !important;
 }
 
 /* FullCalendar */
 
 .btn-primary {
-    background-color: #007bff !important;
-    border-color: #007bff !important;
+  background-color: #007bff !important;
+  border-color: #007bff !important;
 }
 
-.fc-event-title-container, .fc-event-main-frame, .fc-event-future {
-    background-color: #58cb7d!important;
-    border-color: #58cb7d !important;
+.fc-event-title-container,
+.fc-event-main-frame,
+.fc-event-future {
+  background-color: #58cb7d !important;
+  border-color: #58cb7d !important;
 }
 
 .fc-day-other {
-    background-color: #f8f7f8 !important;
+  background-color: #f8f7f8 !important;
 }
 
 .fc-toolbar-title {
-    text-transform: capitalize;
-    font-weight: bold;
+  text-transform: capitalize;
+  font-weight: bold;
 }
 
 .calendar__btnBox {
-    background: #fff;
-    text-align: center;
-    cursor: pointer;
+  background: #fff;
+  text-align: center;
+  cursor: pointer;
 }
 
 .arrowBtn {
-    transition: transform linear 0.5s;
+  transition: transform linear 0.5s;
 }
 
 .arrowBtn-rev {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .category__select {
-    outline: none !important;
+  outline: none !important;
 }
 
 .strike {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 .material-icons {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-th, td {
-    text-align: center;
-    border: 1px solid #efefef;
-    padding: 5px;
+th,
+td {
+  text-align: center;
+  border: 1px solid #efefef;
+  padding: 5px;
 }
 
 th {
-    background-color: #f8f7f8 !important;
+  background-color: #f8f7f8 !important;
 }
 
 #sortByDate {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
+}
+
+#sortByDateBtn {
+  max-width: 150px;
+  max-height: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 10px;
 }
 
 .todo-input {
-    display: grid;
-    row-gap: 1rem;
+  display: grid;
+  row-gap: 1rem;
 }
 
 .todoTable-block {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .pagination-pages {
-    text-align: right;
+  text-align: right;
 }
 
-.pagination-pages>* {
-    margin-right: 0.5rem;
-    cursor: pointer;
+.pagination-pages > * {
+  margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 .material-icons {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 input {
-    color: #00467A;
+  color: #00467a;
 }
 
 h3 {
-    color: #E2E9EF;
-    font-family: "rowdies", cursive;
-    padding: 1rem;
-    background-color: #00467A;
-    border-radius: 10px;
+  color: #e2e9ef;
+  font-family: "rowdies", cursive;
+  padding: 1rem;
+  background-color: #00467a;
+  border-radius: 10px;
 }
 
 .todo-block {
-    padding: 1rem;
-    border-radius: 20px;
+  padding: 1rem;
+  border-radius: 20px;
 }
 
-#date, #time, #nazva, #allCategory {
-    color: white;
+#date,
+#time,
+#nazva,
+#allCategory {
+  color: white;
 }
 
 #categoryFilter {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 #done {
-    min-width: 75px;
+  min-width: 170px;
 }
 
 #nazva {
-    min-width: 280px;
+  min-width: 205px;
 }
 
 #edit {
-    min-width: 110px;
+  min-width: 110px;
 }
 
 #delete {
-    min-width: 110px;
+  min-width: 110px;
 }
 
 #allCategory {
-    min-width: 280px;
+  min-width: 280px;
 }
 
 #date {
-    min-width: 160px;
+  min-width: 180px;
 }
 
 #time {
-    min-width: 70px;
+  min-width: 70px;
 }
 
 #todoTable {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 button:hover {
-    background-color: #01467A;
+  background-color: #01467a;
 }
 
 .chevron {
-    transform: translateY(0.4rem);
+  transform: translateY(0.4rem);
 }
 
 .itemsPerPage {
-    text-align: right;
-    margin-bottom: 0.5rem;
+  text-align: right;
+  margin-bottom: 0.5rem;
 }
 
-#inpEvent, #inpCategory, #dateInput, #timeInput {
-    border-radius: 5px;
+#inpEvent,
+#inpCategory,
+#dateInput,
+#timeInput {
+  outline: none;
 }
 
 .flexContainer {
-    display: flex;
-    flex-wrap: nowrap;
-    margin: 0 -15px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 -15px;
 }
 
 .panel {
-    width: 100%;
+  width: 100%;
 }
 
 .calendar-wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 .fc-button {
-    padding: 0 5px!important;
+  padding: 0 5px !important;
 }
 
 .fc .fc-button {
-    font-size: 0.8em!important;
+  font-size: 0.8em !important;
 }
 
 .table-wrapper {
-    overflow: auto;
-    width: 100%;
+  overflow: auto;
+  width: 100%;
 }
 
-.start, .start2 {
-    position: absolute;
-    left: 10000px;
+.start,
+.start2 {
+  position: absolute;
+  left: 10000px;
 }
 
 .animTarget {
-    display: none;
-}
-
-.fa-leave {
-    /* Резервный клас для других свойств, которые в значении по умолчанию не удовлетворяют */
+  display: none;
 }
 
 .fa-leave-active {
-    transition: opacity 1s, transform 1s;
-    transform: translateX(100px);
-    opacity: 0;
-}
-
-.fa-leave-to {
-    /* Резервный клас для конечых значений active - промежуточный */
+  transition: opacity 1s, transform 1s;
+  transform: translateX(100px);
+  opacity: 0;
 }
 
 .fa-enter {
-    transform: translateX(-100px);
-    opacity: 0;
+  transform: translateX(-100px);
+  opacity: 0;
 }
 
 .fa-enter-active {
-    transition: opacity 1s, transform 1s;
-}
-
-.fa-enter-to {
-    /* Резервный клас для конечых значений active - промежуточный */
-}
-
-/* ---------------------------------------------------------------------------- */
-
-.animTarget-anim {
-    display: none;
-}
-
-.fa-leave-anim {}
-
-.fa-leave-active-anim {
-    /* forwards для IE */
-    animation: niceOut 0.7s linear forwards;
-}
-
-.fa-leave-to-anim {}
-
-.fa-enter-anim {
-    /* Запрещаем рендер до начала анимации */
-    visibility: hidden;
-}
-
-.fa-enter-active-anim {
-    animation: niceIn 0.7s linear;
-}
-
-.fa-enter-to-anim {}
-
-.start-popupWindow, .start2-popupWindow {
-    width: 25% !important;
-}
-
-@keyframes niceIn {
-    from {
-        transform: translateX(-400px) scale(0.7);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0px) scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes niceOut {
-    from {
-        transform: translateX(0px) scale(1);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(400px) scale(0.7);
-        opacity: 0;
-    }
+  transition: opacity 1s, transform 1s;
 }
 
 @media screen and (max-width: 1200px) {
-    .fc .fc-toolbar {
-        flex-direction: column!important;
-    }
-    .fc-toolbar-title {
-        margin: 15px !important;
-    }
-    .start-popupWindow, .start2-popupWindow {
-        width: 40% !important;
-    }
+  .fc .fc-toolbar {
+    flex-direction: column !important;
+  }
+  .fc-toolbar-title {
+    margin: 15px !important;
+  }
+  .start-popupWindow,
+  .start2-popupWindow {
+    width: 40% !important;
+  }
 }
 
 @media screen and (max-width: 992px) {
-    .container {
-        max-width: 1200px !important;
-    }
-    .flexContainer {
-        flex-wrap: wrap;
-    }
-    .panel {
-        order: 2;
-        width: 100%;
-    }
-    .calendar-wrapper {
-        order: 1;
-        width: 100%;
-        margin-bottom: 15px;
-    }
+  .container {
+    max-width: 1200px !important;
+  }
+  .flexContainer {
+    flex-wrap: wrap;
+  }
+  .panel {
+    order: 2;
+    width: 100%;
+  }
+  .calendar-wrapper {
+    order: 1;
+    width: 100%;
+    margin-bottom: 15px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .fc .fc-daygrid-week-number {
-        display: none!important;
-    }
-    .start-popupWindow, .start2-popupWindow {
-        width: 60% !important;
-    }
+  .fc .fc-daygrid-week-number {
+    display: none !important;
+  }
+  .start-popupWindow,
+  .start2-popupWindow {
+    width: 60% !important;
+  }
 }
 
 @media screen and (max-width: 520px) {
-    .btn-primary {
-        font-size: 8px !important;
-    }
-    .start-popupWindow, .start2-popupWindow {
-        width: 100% !important;
-        height: 100vh;
-    }
+  .btn-primary {
+    font-size: 8px !important;
+  }
+  .start-popupWindow,
+  .start2-popupWindow {
+    width: 100% !important;
+    height: 100vh;
+  }
 }

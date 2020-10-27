@@ -45,8 +45,10 @@
     <div class="container py-3">
 
         <div class="btnWrapper py-0 text-center">
-            <button id="authorize_button" class="btn btn-primary mx-3 my-2" style="display:none">Додати Google Календар</button>
-            <button id="signout_button" class="btn btn-primary mx-3 my-2" style="display:none">Видалити Google Календар</button>
+            <button id="authorize_button" class="btn btn-primary mx-3 my-2" style="display:none">Додати Google
+                Календар</button>
+            <button id="signout_button" class="btn btn-primary mx-3 my-2" style="display:none">Видалити Google
+                Календар</button>
             <span id="gmail" style="display: none;"></span>
         </div>
 
@@ -59,13 +61,20 @@
                     <i class="material-icons arrowBtn">expand_less</i>
                 </div>
             </div>
-          
         </div>
 
         <table id="eventManagePanel" class="animTarget-anim table-list">
             <tr>
-                <th class="text-center text-secondary" id="done">Виконано</th>
-                <th class="text-center text-secondary" id="date">Дата події </th>
+                <th class="text-center text-secondary" id="done">
+                    Виконано
+                    <label class="shortListBtn d-flex"><input class="mr-3" id="shortListBtn" type="checkbox">Актуальні
+                        події
+                        напочатку</label>
+                </th>
+                <th class="text-center text-secondary" id="date">
+                    Дата події
+                    <!-- <div id="sortByDateBtn" class="btn btn-secondary text-dark">Сортувати за датою</div> -->
+                </th>
                 <th class="text-center text-secondary" id="time">Час події</th>
                 <th class="text-center text-secondary" id="nazva">Назва події</th>
                 <th class="text-center text-secondary" id="allCategory">
@@ -86,7 +95,7 @@
 
     </div>
 
-
+    <!-- Scripts -->
     <script defer src="fullcalendar-5.3.2/lib/main.min.js"></script>
     <script defer src="fullcalendar-5.3.2/lib/locales/uk.js"></script>
     <script defer src="js/popUp.js"></script>
@@ -96,7 +105,7 @@
     <script src="./js/googlecalendar.js"></script>
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
+        </script>
 
 </body>
 

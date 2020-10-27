@@ -18,14 +18,9 @@ function todoMain() {
         closePopupBtn
 
 
-    // App start
-    // getElements()
-    // addListeners()
-
     let popupAddEvent = new PopUp({
         openBtn: 'start',
         container: 'addEvent',
-        // reload: 'updatePopup-popupAddEvent',
         content: `<div class="panel d-flex">
         <div class="todo-input todo-block align-self-stretch w-100">
             <span>Подія</span>
@@ -47,7 +42,6 @@ function todoMain() {
 
             <div id="addBtn" class="addBtn updatePopup-popupAddEvent btn btn-primary">Додати подію</div>
             <span></span>
-            <div id="sortByDateBtn" class="btn btn-primary">Сортувати за датою</div>
 
             <span></span>
             <label class="shortListBtn"><input class="mr-3" id="shortListBtn" type="checkbox">Актуальні події напочатку</label>
@@ -58,14 +52,8 @@ function todoMain() {
         maskOpacity: '0.01',
     })
 
-    //     document.addEventListener('click', function(event){
-    // console.log(event.target)
-    //     })
-
-
 
     let popup = new PopUp({
-        // openBtn: 'showPopup',
         openBtn: 'start2',
         container: 'popup',
         reload: 'updatePopup',
@@ -97,15 +85,11 @@ function todoMain() {
     })
 
 
-    // let startPopupAddEvCol = document.querySelectorAll('.showPopup')
-
-
     window.addEventListener('load', () => {
 
-        let startPopupAddEvCol = document.querySelectorAll('.material-icons')
-        // console.log("todoMain -> startPopupAddEvCol", startPopupAddEvCol)
+        // let startPopupAddEvCol = document.querySelectorAll('.material-icons')
 
-        // function getElements() {
+        //Elements
         inputElemEvent = document.querySelector('#inpEvent')
         inputElemCategory = document.querySelector('#inpCategory')
         dateInput = document.querySelector('#dateInput')
@@ -115,23 +99,14 @@ function todoMain() {
         managePanel = document.querySelector('#eventManagePanel')
         selectElem = document.querySelector('#categoryFilter')
         shortListBtn = document.querySelector('#shortListBtn')
-        // }
-
-        // function addListeners() {
-
-        addBtn.addEventListener('click', addEvent)
-        sortByDateBtn.addEventListener('click', sortEventListByDate)
-        shortListBtn.addEventListener('change', multipleFilter)
-        selectElem.addEventListener('change', multipleFilter)
-
-        // managePanel.addEventListener('click', managePanelReduct)
-        // }
-
-
         changeBtn = document.querySelector('#changeBtn')
         closePopupBtn = document.querySelector('.start2-popupClose')
-        // console.log("todoMain -> closePopupBtn", closePopupBtn)
-        // closePopupBtn.classList.add('updatePopup')
+
+        //Listeners
+        addBtn.addEventListener('click', addEvent)
+        // sortByDateBtn.addEventListener('click', sortEventListByDate)
+        shortListBtn.addEventListener('change', multipleFilter)
+        selectElem.addEventListener('change', multipleFilter)
         changeBtn.addEventListener('click', commitEdit)
 
 
@@ -160,8 +135,6 @@ function todoMain() {
         const inputValueTime = timeInput.value
         timeInput.value = ''
 
-        console.log(inputValueDate)
-
         // Create obj for new event
         let eventObj = {
             id: _uuid(),
@@ -172,7 +145,7 @@ function todoMain() {
             isDone: false,
         }
 
-        //Event add for google calendar
+        // Add event for google calendar
         if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
             if (!eventObj.time) {
                 var event = {
@@ -201,22 +174,17 @@ function todoMain() {
                     },
                 }
             }
-            // console.log(event);
 
             var request = gapi.client.calendar.events.insert({
                 'calendarId': CAL_ID,
                 'resource': event
             })
             request.execute()
-            // console.log('event pushed for gCal ' + event.id);
         }
-        //-------------------------------------------------------------------
 
 
         //Render new event category
-
         renderEvent(eventObj)
-
 
         //Add new event in array eventList
         eventList.push(eventObj)
@@ -227,7 +195,9 @@ function todoMain() {
         //Update filter options
         updateFilterOptions()
 
-        console.log(eventList)
+        // Sort events by date
+        sortEventListByDate()
+
     }
 
     function updateFilterOptions() {
@@ -408,14 +378,13 @@ function todoMain() {
             // Fullcalendar
             calendar.getEventById(this.dataset.id).remove()
 
-            // Event delete for google calendar
+            // Delete event for google calendar
             if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
                 var request = gapi.client.calendar.events.delete({
                     'calendarId': CAL_ID,
                     'eventId': this.dataset.id,
                 })
                 request.execute()
-                // console.log('id for delete: ' + this.dataset.id);
             }
         }
 
@@ -598,20 +567,16 @@ function todoMain() {
         renderAllEvents(eventList)
         updateFilterOptions()
 
-
-
-        console.log(eventList)
     }
 
 
-    //========================================  Animation keyframes  =====================================================
+    //========================================  Animation for event list  =====================================================
 
     const btnShow = document.querySelector('.show-alert-anim')
     const btnShowAnimIcon = document.querySelector('.arrowBtn')
+    const divAlert = document.querySelector('.animTarget-anim')
 
     let showTableFlag = false
-    // const btnHideAnim = document.querySelector('.hide-alert-anim')
-    const divAlert = document.querySelector('.animTarget-anim')
 
     btnShow.addEventListener('click', function () {
         show()
@@ -630,12 +595,9 @@ function todoMain() {
 
         divAlert.style.display = 'block'
 
-        // Т.к. по умолчанию опасити и так 1 тразишену некуда выполняться
-        // Принудительно задаём исходное опасити 0
         divAlert.classList.add('fa-enter')
 
-        // И только после этого (асинхронно) выполняем анимацию, которая уже теперь может работать.
-        raf( //Асинхронная работа
+        raf(
             function () {
                 divAlert.classList.add('fa-enter-active')
                 divAlert.classList.add('fa-enter-to')
@@ -643,11 +605,10 @@ function todoMain() {
             }
         )
 
-        divAlert.addEventListener('transitionend', handler) // подчищаем класы, удаляем листенер
+        divAlert.addEventListener('transitionend', handler)
 
-        //--Toggle--
-        btnShow.removeEventListener('click', show) // Запрещаем повторное нажатие 'Show'
-        btnShow.addEventListener('click', hide) //Разрешаем работу с кнопкой "Скрыть"
+        btnShow.removeEventListener('click', show)
+        btnShow.addEventListener('click', hide)
 
         function handler() {
             divAlert.classList.remove('fa-enter-active')
@@ -660,8 +621,6 @@ function todoMain() {
 
     function hide() {
 
-        // Работает и без асинхронности здесь т.к. значение опасити по умолчанию 1 и есть куда совершать транзишн
-        // Но резервируем класс если прийдётся работать с другими свойствами, значение по умолчанию которых нам не подойдёт
         divAlert.classList.add('fa-leave')
         divAlert.classList.add('fa-leave-active')
         raf(
@@ -672,11 +631,11 @@ function todoMain() {
             }
         )
 
-        divAlert.addEventListener('transitionend', handler) // дисплей: нон, подчищаем класы, удаляем листенер
+        divAlert.addEventListener('transitionend', handler)
 
         //--Toggle--
-        btnShow.removeEventListener('click', hide) // Запрещаем повторное нажатие 'Hide'
-        btnShow.addEventListener('click', show) //Разрешаем работу с кнопкой "Show"
+        btnShow.removeEventListener('click', hide)
+        btnShow.addEventListener('click', show)
 
         function handler() {
             divAlert.style.display = 'none'
@@ -687,7 +646,7 @@ function todoMain() {
         }
     }
 
-    function raf(fn) { //Откладывает запуск дальнейшего рендеринга до срабатывания предъидущего
+    function raf(fn) {
         window.requestAnimationFrame(function () {
             window.requestAnimationFrame(function () {
                 fn()
