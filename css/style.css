@@ -136,7 +136,8 @@ body {
 .addBtn,
 #changeBtn,
 #authorize_button,
-#signout_button {
+#signout_button,
+#deleteBtn {
   background: #607d8b !important;
   color: #f8f7f8;
   font-weight: bold !important;

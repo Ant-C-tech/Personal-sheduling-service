@@ -15,7 +15,8 @@ function todoMain() {
         calendar,
         shortListBtn,
         changeBtn,
-        closePopupBtn
+        closePopupBtn,
+        deleteBtn
 
 
     let popupAddEvent = new PopUp({
@@ -73,6 +74,7 @@ function todoMain() {
             <span></span>
 
             <div id="changeBtn" class="btn btn-primary updatePopup">Зберігти зміни</div>
+            <div id="deleteBtn" class="btn btn-primary updatePopup">Видалити подію</div>
         </div>
        
     </div>`,
@@ -97,6 +99,7 @@ function todoMain() {
         shortListBtn = document.querySelector('#shortListBtn')
         changeBtn = document.querySelector('#changeBtn')
         closePopupBtn = document.querySelector('.start2-popupClose')
+
 
         //Listeners
         addBtn.addEventListener('click', addEvent)
@@ -249,7 +252,9 @@ function todoMain() {
 
         //Add a new event (row)
         let eventRow = document.createElement('tr')
+        eventRow.dataset.id = id
         managePanel.appendChild(eventRow)
+
 
         //Add a checkbox cell
         let checkboxCell = document.createElement('td')
@@ -278,7 +283,7 @@ function todoMain() {
         let eventDate = document.createElement('span')
         // eventDate.dataset.editable = true
         eventDate.dataset.type = 'date'
-        eventDate.dataset.value = date
+        // eventDate.dataset.value = date
         eventDate.dataset.id = id
 
         let dateObj = new Date(date)
@@ -297,8 +302,8 @@ function todoMain() {
 
         let eventTime = document.createElement('span')
         // eventTime.dataset.editable = true
-        // eventTime.dataset.type = 'time'
-        // eventTime.dataset.id = id
+        eventTime.dataset.type = 'time'
+        eventTime.dataset.id = id
 
         eventTime.innerText = time
         eventTimeCell.appendChild(eventTime)
@@ -310,8 +315,8 @@ function todoMain() {
 
         let eventName = document.createElement('span')
         // eventName.dataset.editable = true
-        // eventName.dataset.type = 'name'
-        // eventName.dataset.id = id
+        eventName.dataset.type = 'name'
+        eventName.dataset.id = id
 
         eventName.innerText = name
         eventNameCell.appendChild(eventName)
@@ -322,8 +327,8 @@ function todoMain() {
 
         let categoryName = document.createElement('span')
         // categoryName.dataset.editable = true
-        // categoryName.dataset.type = 'category'
-        // categoryName.dataset.id = id
+        categoryName.dataset.type = 'category'
+        categoryName.dataset.id = id
 
         categoryName.className = 'categoryName'
         categoryName.innerText = category
@@ -341,7 +346,7 @@ function todoMain() {
         edit.addEventListener('click', function (event) {
             editEvent(event)
             document.querySelector('.start2').click()
-            console.log("todoMain -> document.querySelector('.start2')", document.querySelector('.start2'))
+            // console.log("todoMain -> document.querySelector('.start2')", document.querySelector('.start2'))
 
         })
         editCell.appendChild(edit)
@@ -428,6 +433,7 @@ function todoMain() {
         clearEvents()
         renderAllEvents(eventList)
         updateFilterOptions()
+
     }
 
     function initCalendar() {
@@ -442,14 +448,18 @@ function todoMain() {
             locale: 'uk',
             contentHeight: 'auto',
             themeSystem: 'standard',
+            initialDate: new Date(),
             buttonIcons: false, // show the prev/next text
             weekNumbers: true,
             navLinks: true, // can click day/week names to navigate views
             editable: true,
+            eventDrop: function (info) {
+                // console.log(info.event);
+                calendarEventDragged(info.event)
+            },
             dayMaxEvents: true, // allow "more" link when too many events
             events: [],
             eventClick: function (info) {
-
                 editEvent(info.event)
                 document.querySelector('.start2').click()
             },
@@ -547,6 +557,11 @@ function todoMain() {
         document.querySelector('#editCategory').value = category
         document.querySelector('#editDate').value = date
         document.querySelector('#editTime').value = time
+        deleteBtn = document.querySelector('#deleteBtn')
+        deleteBtn.addEventListener('click', function () {
+            console.log(currentElemId);
+            deleteCurrentEvent(currentElemId)
+        })
     }
 
     function commitEdit(event) {
@@ -579,15 +594,70 @@ function todoMain() {
             }
         })
 
+        updateEventList()
+        // saveEvent()
+        // clearEvents()
+        // renderAllEvents(eventList)
+        // updateFilterOptions()
 
+        // // Sort events by date
+        // sortEventListByDate()
+
+    }
+
+    function calendarEventDragged(event) {
+        const druggedElementId = event.id
+        const druggedElementDateObj = new Date(event.start)
+        const eventNewYear = druggedElementDateObj.getFullYear()
+        let eventNewMonth = druggedElementDateObj.getMonth() + 1
+        if (eventNewMonth.toString().length < 2) {
+            eventNewMonth = `0${eventNewMonth}`
+        }
+        let eventNewDay = druggedElementDateObj.getDate()
+        if (eventNewDay.toString().length < 2) {
+            eventNewDay = `0${eventNewDay}`
+        }
+        const eventNewDate = `${eventNewYear}-${eventNewMonth}-${eventNewDay}`
+
+        eventList.forEach(itemObj => {
+            if (itemObj.id == druggedElementId) {
+                itemObj.date = eventNewDate
+            }
+        })
+
+        updateEventList()
+    }
+
+    function deleteCurrentEvent(id) {
+        eventList.forEach(function (item, index, object) {
+            if (item.id === id) {
+                object.splice(index, 1);
+            }
+        })
+
+        updateEventList()
+    }
+
+    function updateEventList() {
         saveEvent()
+        let currentFilter = ''
+        if (selectElem.value !== 'Всі категорії') {
+            currentFilter = selectElem.value
+        }
         clearEvents()
         renderAllEvents(eventList)
-        updateFilterOptions()
 
         // Sort events by date
         sortEventListByDate()
 
+        if (currentFilter !== '') {
+            selectElem.value = currentFilter
+            multipleFilter()
+        }
+
+        if (shortListBtn.checked) {
+            multipleFilter()
+        }
     }
 
 
@@ -600,6 +670,7 @@ function todoMain() {
     let showTableFlag = false
 
     btnShow.addEventListener('click', function () {
+
         show()
         if (!showTableFlag) {
             btnShowAnimIcon.classList.add('arrowBtn-rev')
