@@ -16,7 +16,8 @@ function todoMain() {
         shortListBtn,
         changeBtn,
         closePopupBtn,
-        deleteBtn
+        deleteBtn,
+        doneBtn
 
 
     let popupAddEvent = new PopUp({
@@ -74,6 +75,7 @@ function todoMain() {
             <span></span>
 
             <div id="changeBtn" class="btn btn-primary updatePopup">Зберігти зміни</div>
+            <div id="doneBtn" class="btn btn-primary">Змінити статус "Виконано" обраної події</div>
             <div id="deleteBtn" class="btn btn-primary updatePopup">Видалити подію</div>
         </div>
        
@@ -106,7 +108,9 @@ function todoMain() {
         // sortByDateBtn.addEventListener('click', sortEventListByDate)
         shortListBtn.addEventListener('change', multipleFilter)
         selectElem.addEventListener('change', multipleFilter)
-        changeBtn.addEventListener('click', commitEdit)
+        changeBtn.addEventListener('click', commitEdit, {
+            once: true,
+        })
 
 
         initCalendar()
@@ -144,7 +148,7 @@ function todoMain() {
             isDone: false,
         }
 
-        // Add event for google calendar
+        //====================== Add event for google calendar==================
         if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
             if (!eventObj.time) {
                 var event = {
@@ -180,6 +184,7 @@ function todoMain() {
             })
             request.execute()
         }
+        //=======================================================================
 
 
         //Render new event category
@@ -188,14 +193,7 @@ function todoMain() {
         //Add new event in array eventList
         eventList.push(eventObj)
 
-        //Save event to LocalStorage
-        saveEvent()
-
-        //Update filter options
-        updateFilterOptions()
-
-        // Sort events by date
-        sortEventListByDate()
+        updateEventList()
 
     }
 
@@ -266,6 +264,7 @@ function todoMain() {
                 multipleFilter()
             }
         })
+        checkboxElem.addEventListener('click', updateEventList)
         checkboxElem.dataset.id = id
         if (isDone) {
             eventRow.classList.add('strike')
@@ -342,12 +341,9 @@ function todoMain() {
         edit.innerText = 'edit'
         edit.className = 'material-icons'
         edit.classList.add('showPopup')
-        // edit.addEventListener('click', editEvent)
         edit.addEventListener('click', function (event) {
             editEvent(event)
             document.querySelector('.start2').click()
-            // console.log("todoMain -> document.querySelector('.start2')", document.querySelector('.start2'))
-
         })
         editCell.appendChild(edit)
         eventRow.appendChild(editCell)
@@ -362,12 +358,24 @@ function todoMain() {
         basketCell.appendChild(basket)
         eventRow.appendChild(basketCell)
 
+        let eventColor = '#80deea'
+        checkCalendarEventColor()
         //Add event to calendar
         addEventToCalendar({
             id: id,
-            title: name,
-            start: date,
+            title: (isDone) ? `ВИКОНАНО!: ${name}` : name,
+            start: `${date}T${time}`,
+            color: eventColor,
         })
+
+        function checkCalendarEventColor() {
+            if (category === 'ВАЖЛИВО!') {
+                eventColor = '#ff8a80'
+            }
+            if (isDone) {
+                eventColor = '#e0f7fa'
+            }
+        }
 
         function deleteEvent() {
             eventRow.remove() // Замыкание!!!
@@ -453,6 +461,10 @@ function todoMain() {
             weekNumbers: true,
             navLinks: true, // can click day/week names to navigate views
             editable: true,
+            dateClick: function (info) {
+                preFillAddForm(info)
+                document.querySelector('.showPopUpAddEvent').click()
+            },
             eventDrop: function (info) {
                 // console.log(info.event);
                 calendarEventDragged(info.event)
@@ -466,9 +478,11 @@ function todoMain() {
             eventBackgroundColor: '#B2EBF2',
             eventBorderColor: ' #607D8B',
             eventTextColor: ' #607D8B',
-            // dateClick: function (info) {
-            //     document.querySelector('.start').click()
-            // },
+            eventTimeFormat: {
+                hour: 'numeric',
+                minute: '2-digit',
+                omitZeroMinute: false,
+            },
 
         });
 
@@ -557,11 +571,40 @@ function todoMain() {
         document.querySelector('#editCategory').value = category
         document.querySelector('#editDate').value = date
         document.querySelector('#editTime').value = time
+
+        doneBtn = document.querySelector('#doneBtn')
+        doneBtn.addEventListener('click', function () {
+            makeDoneCurrentEvent2(currentElemId)
+        }, {
+            once: true,
+        })
+
         deleteBtn = document.querySelector('#deleteBtn')
         deleteBtn.addEventListener('click', function () {
-            console.log(currentElemId);
             deleteCurrentEvent(currentElemId)
+        }, {
+            once: true,
         })
+    }
+
+    function preFillAddForm(event) {
+        // let dateCalendarData = Date.parse(event.dateStr)
+        // console.log("preFillAddForm -> event.dateStr", event.dateStr)
+        // let dateEvent = new Date(dateCalendarData)
+
+        // const eventYear = dateEvent.getFullYear()
+        // let eventMonth = (dateEvent.getMonth() + 1).toString()
+        // if (eventMonth.toString().length < 2) {
+        //     eventMonth = `0${eventMonth}`
+        // }
+        // let eventDay = dateEvent.getDate().toString()
+        // if (eventDay.toString().length < 2) {
+        //     eventDay = `0${eventDay}`
+        // }
+
+        // const eventDate = `${eventYear}-${eventMonth}-${eventMonth}`
+
+        // document.querySelector('#dateInput').value = eventDate
     }
 
     function commitEdit(event) {
@@ -571,7 +614,6 @@ function todoMain() {
         let nameObj = document.querySelector('#editName').value
         let category = document.querySelector('#editCategory').value
         let dateObj = document.querySelector('#editDate').value
-        console.log("commitEdit -> dateObj", dateObj)
         let time = document.querySelector('#editTime').value
 
         calendar.getEventById(id).remove()
@@ -595,13 +637,6 @@ function todoMain() {
         })
 
         updateEventList()
-        // saveEvent()
-        // clearEvents()
-        // renderAllEvents(eventList)
-        // updateFilterOptions()
-
-        // // Sort events by date
-        // sortEventListByDate()
 
     }
 
@@ -628,7 +663,18 @@ function todoMain() {
         updateEventList()
     }
 
+    function makeDoneCurrentEvent2(id) {
+        eventList.forEach(itemObj => {
+            if (itemObj.id === id) {
+                itemObj.isDone = !itemObj.isDone
+            }
+        })
+
+        updateEventList()
+    }
+
     function deleteCurrentEvent(id) {
+
         eventList.forEach(function (item, index, object) {
             if (item.id === id) {
                 object.splice(index, 1);

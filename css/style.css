@@ -59,8 +59,9 @@ body {
 /* FullCalendar */
 
 .fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
-  background: #0097a7;
+  background: #80deea;
   font-weight: bold;
+  color: #6c757d;
 }
 
 .fc-dayGridMonth-button.fc-button.fc-button-primary {
@@ -69,8 +70,9 @@ body {
 }
 
 .fc-timeGridWeek-button.fc-button.fc-button-primary.fc-button-active {
-  background: #0097a7;
+  background: #80deea;
   font-weight: bold;
+  color: #6c757d;
 }
 
 .fc-timeGridWeek-button.fc-button.fc-button-primary {
@@ -79,8 +81,9 @@ body {
 }
 
 .fc-timeGridDay-button.fc-button.fc-button-primary.fc-button-active {
-  background: #0097a7;
+  background: #80deea;
   font-weight: bold;
+  color: #6c757d;
 }
 
 .fc-timeGridDay-button.fc-button.fc-button-primary {
@@ -94,8 +97,9 @@ body {
 }
 
 .fc-today-button.fc-button.fc-button-primary.fc-button-active {
-  background: #0097a7;
+  background: #80deea;
   font-weight: bold;
+  color: #6c757d;
 }
 
 .fc-timeGridDay-button.fc-button.fc-button-primary {
@@ -104,8 +108,9 @@ body {
 }
 
 .fc-listMonth-button.fc-button.fc-button-primary.fc-button-active {
-  background: #0097a7;
+  background: #80deea;
   font-weight: bold;
+  color: #6c757d;
 }
 
 .fc-listMonth-button.fc-button.fc-button-primary {
@@ -137,7 +142,8 @@ body {
 #changeBtn,
 #authorize_button,
 #signout_button,
-#deleteBtn {
+#deleteBtn,
+#doneBtn {
   background: #607d8b !important;
   color: #f8f7f8;
   font-weight: bold !important;
