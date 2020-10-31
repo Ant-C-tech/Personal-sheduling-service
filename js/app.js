@@ -87,8 +87,6 @@ function todoMain() {
 
     window.addEventListener('load', () => {
 
-        // let startPopupAddEvCol = document.querySelectorAll('.material-icons')
-
         //Elements
         inputElemEvent = document.querySelector('#inpEvent')
         inputElemCategory = document.querySelector('#inpCategory')
@@ -105,7 +103,6 @@ function todoMain() {
 
         //Listeners
         addBtn.addEventListener('click', addEvent)
-        // sortByDateBtn.addEventListener('click', sortEventListByDate)
         shortListBtn.addEventListener('change', multipleFilter)
         selectElem.addEventListener('change', multipleFilter)
         changeBtn.addEventListener('click', commitEdit, {
@@ -451,7 +448,7 @@ function todoMain() {
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             locale: 'uk',
             contentHeight: 'auto',
@@ -481,6 +478,7 @@ function todoMain() {
             eventTimeFormat: {
                 hour: 'numeric',
                 minute: '2-digit',
+                // second: false,
                 omitZeroMinute: false,
             },
 
@@ -588,23 +586,17 @@ function todoMain() {
     }
 
     function preFillAddForm(event) {
-        // let dateCalendarData = Date.parse(event.dateStr)
-        // console.log("preFillAddForm -> event.dateStr", event.dateStr)
-        // let dateEvent = new Date(dateCalendarData)
 
-        // const eventYear = dateEvent.getFullYear()
-        // let eventMonth = (dateEvent.getMonth() + 1).toString()
-        // if (eventMonth.toString().length < 2) {
-        //     eventMonth = `0${eventMonth}`
-        // }
-        // let eventDay = dateEvent.getDate().toString()
-        // if (eventDay.toString().length < 2) {
-        //     eventDay = `0${eventDay}`
-        // }
+        const dateRegExp = /^.{10}/g
+        const newEventDate = event.dateStr.match(dateRegExp)
+        const timeRegExp = /(?<=T).{5}/g
+        const newEventTime = event.dateStr.match(timeRegExp)
 
-        // const eventDate = `${eventYear}-${eventMonth}-${eventMonth}`
+        document.querySelector('#dateInput').value = newEventDate[0]
+        if (newEventTime != null) {
+            document.querySelector('#timeInput').value = newEventTime[0]
+        }
 
-        // document.querySelector('#dateInput').value = eventDate
     }
 
     function commitEdit(event) {
