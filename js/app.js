@@ -509,7 +509,20 @@ function todoMain() {
         if (selectElem.value === 'Всі категорії') {
             if (shortListBtn.checked) {
                 let filteredIncompleteArr = eventList.filter(obj => obj.isDone === false)
-                renderAllEvents(filteredIncompleteArr)
+
+                if (filteredIncompleteArr.length == 0) {
+                    let eventRow = document.createElement('tr')
+                    managePanel.appendChild(eventRow)
+                    let eventMessageCell = document.createElement('td')
+                    eventMessageCell.setAttribute('colspan', '6')
+                    let eventMessage = document.createElement('span')
+                    eventMessage.innerText = 'У Вас немає актуальних подій за обраною категорією'
+                    eventMessageCell.appendChild(eventMessage)
+                    eventRow.appendChild(eventMessageCell)
+                } else {
+                    renderAllEvents(filteredIncompleteArr)
+                }
+
                 let filteredCompleteArr = eventList.filter(obj => obj.isDone === true)
                 renderAllEvents(filteredCompleteArr)
             } else {
@@ -520,7 +533,6 @@ function todoMain() {
 
             if (shortListBtn.checked) {
                 let filteredIncompleteArr = filteredCategoryArr.filter(obj => obj.isDone === false)
-                console.log("multipleFilter -> filteredIncompleteArr", filteredIncompleteArr)
 
                 if (filteredIncompleteArr.length == 0) {
                     let eventRow = document.createElement('tr')
