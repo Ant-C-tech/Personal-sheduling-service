@@ -1,8 +1,8 @@
 # Personal scheduling service
 IT Nation Hacks-2020. Keys: "Personal sheduling service". (Jackie Team) 
-# What Is Personal sheduling service?
+# What Is Personal scheduling service?
 Have you ever spent more time scheduling a meeting than in the meeting itself? 
-"Personal sheduling service" is a free web and mobile calendar based on FullCalendar Library in Ukrainian that lets you keep track of your own events. It's the ideal tool for managing personal and professional schedules. It is both simple to use and very powerful. "Personal sheduling service's" interface decored with Material Design Palette's organic colors, but it hides a lot of powerful features. Your busy life deserves this. 
+"Personal sheduling service" is a free web and mobile calendar based on FullCalendar Library in Ukrainian that lets you keep track of your own events. It's the ideal tool for managing personal and professional schedules. It is both simple to use and very powerful. "Personal sheduling service's" interface decorated with Material Design Palette's organic colors, but it hides a lot of powerful features. Your busy life deserves this. 
 
 You can quickly jump to different sections of your calendar by selecting a date. On the upper right corner, there are tabs to switch between day, week, month. The main area shows the current view. If you have a Google Calendar you can synchronize it with "Personal sheduling service" - the top of the screen offers you do it easylly.
 
