@@ -1,4 +1,4 @@
-# Personal sheduling service
+# Personal scheduling service
 IT Nation Hacks-2020. Keys: "Personal sheduling service". (Jackie Team) 
 # What Is Personal sheduling service?
 Have you ever spent more time scheduling a meeting than in the meeting itself? 
